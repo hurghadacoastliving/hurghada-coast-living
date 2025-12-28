@@ -1,0 +1,1 @@
+# hurghada-coast-living
