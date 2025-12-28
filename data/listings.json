@@ -19,6 +19,20 @@
         "Klimaanlage",
         "Aufzug"
       ]
+    },
+    {
+      "size": "150",
+      "price": "100.00",
+      "floor": "5",
+      "furnished": "Möbiliert",
+      "location": "SeaView",
+      "title": "SeaView Hurgahda",
+      "rooms": "3",
+      "type": "Kauf",
+      "id": "HCL 002",
+      "features": [
+        "Gehobene Ausstattung"
+      ]
     }
   ]
 }
