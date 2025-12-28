@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "listings"
+    label: "Inserate"
+    files:
+      - file: "data/listings.json"
+        label: "Inserate (JSON)"
+        name: "listings_json"
+        fields:
+          - label: "Inserate"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Typ", name: "type", widget: "select", options: ["Kauf", "Miete"] }
+              - { label: "Preis", name: "price", widget: "string" }
+              - { label: "Lage", name: "location", widget: "string" }
+              - { label: "Größe", name: "size", widget: "string", required: false }
+              - { label: "Zimmer", name: "rooms", widget: "string", required: false }
+              - { label: "Etage", name: "floor", widget: "string", required: false }
+              - { label: "Möbliert", name: "furnished", widget: "string", required: false }
+              - label: "Ausstattung"
+                name: "features"
+                widget: "list"
+                required: false
+              - { label: "Beschreibung", name: "description", widget: "text", required: false }
+              - label: "Bilder"
+                name: "images"
+                widget: "list"
+                required: false
+                field: { label: "Bild", name: "image", widget: "image" }

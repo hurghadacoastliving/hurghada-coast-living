@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Hurghada Coast Living – Wohnungen in Hurghada</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Login (Netlify Identity) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:#0B1C2D;
+      color:white;
+    }
+    header{
+      padding:30px;
+      background:#132A40;
+    }
+    h1{margin:0;}
+    section{padding:30px;}
+    .card{
+      background:#1b334d;
+      padding:20px;
+      border-radius:12px;
+      margin-bottom:20px;
+    }
+    input, textarea{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+    }
+    button{
+      margin-top:10px;
+      padding:12px;
+      background:#1ECAD3;
+      border:none;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .login{
+      float:right;
+      background:#F2C97D;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <button class="login" onclick="netlifyIdentity.open()">Login</button>
+  <h1>Hurghada Coast Living</h1>
+  <p>Wohnungen in Hurghada – Miete & Kauf</p>
+</header>
+
+<section>
+  <div class="card">
+    <h2>📩 Anfrage senden</h2>
+
+    <form name="interest" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="interest">
+
+      <label>Name</label>
+      <input name="name" required>
+
+      <label>E-Mail</label>
+      <input type="email" name="email" required>
+
+      <label>Nachricht</label>
+      <textarea name="message"></textarea>
+
+      <button type="submit">Anfrage senden</button>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>🏡 Beispiel-Inserat</h2>
+    <p>2-Zimmer-Wohnung · El Kawther</p>
+    <p>Preis: 55.000 €</p>
+    <button onclick="alert('Favorit gespeichert (Demo)')">❤️ Favorit</button>
+  </div>
+</section>
+
+<script>
+  netlifyIdentity.on("login", () => {
+    netlifyIdentity.close();
+    alert("Erfolgreich eingeloggt!");
+  });
+</script>
+
+</body>
+</html>
