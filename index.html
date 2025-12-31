@@ -1,101 +1,384 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <title>Hurghada Coast Living – Wohnungen in Hurghada</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hurghada Coast Living – Wohnungen in Hurghada mieten & kaufen</title>
+  <meta name="description" content="Hurghada Coast Living vermittelt Wohnungen in Hurghada zur Miete und zum Kauf. Unverbindliche Anfrage – direkter Kontakt zu Anbietern in Ägypten." />
 
-  <!-- Login (Netlify Identity) -->
+  <!-- Netlify Identity (Login) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <style>
+    :root{
+      --bg-main:#0B1C2D;
+      --bg-card:#132A40;
+      --accent-main:#1ECAD3;
+      --accent-warm:#F2C97D;
+      --text-main:#FFFFFF;
+      --text-muted:#AFC6D8;
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:#0B1C2D;
-      color:white;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 700px at 20% 0%, rgba(30,202,211,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 10%, rgba(242,201,125,.12), transparent 60%),
+        var(--bg-main);
+      color:var(--text-main);
+      line-height:1.45;
     }
+    .wrap{max-width:1100px; margin:0 auto; padding:26px 18px 70px;}
     header{
-      padding:30px;
-      background:#132A40;
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      margin-bottom:16px;
     }
-    h1{margin:0;}
-    section{padding:30px;}
+    .brand{display:flex; align-items:center; gap:12px;}
+    .logoBox{
+      width:52px; height:52px; border-radius:16px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+      font-weight:900;
+    }
+    .brand img{width:52px; height:52px; object-fit:cover; display:block;}
+    .brand h1{margin:0; font-size:18px; letter-spacing:.2px}
+    .brand p{margin:4px 0 0; color:var(--text-muted); font-size:13px}
+
+    .chips{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .chip{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(30,202,211,.35);
+      background: rgba(30,202,211,.08);
+      font-size:12px;
+    }
+
     .card{
-      background:#1b334d;
-      padding:20px;
-      border-radius:12px;
-      margin-bottom:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-    input, textarea{
+    .pad{padding:22px}
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(242,201,125,.35);
+      background: rgba(242,201,125,.08);
+      font-size:12px;
+    }
+    .headline{font-size:32px; margin:12px 0 10px}
+    .sub{color:var(--text-muted); margin:0 0 14px}
+
+    .hero{
+      display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; align-items:stretch; margin-top:14px;
+    }
+    @media (max-width: 920px){ .hero{grid-template-columns:1fr} }
+
+    /* Form */
+    form{padding:22px}
+    label{display:block; font-size:12px; color:var(--text-muted); margin:12px 0 6px}
+    input, select, textarea{
       width:100%;
-      padding:10px;
-      margin-top:5px;
+      padding:12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(6, 18, 29, .55);
+      color: var(--text-main);
+      outline:none;
     }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(30,202,211,.8);
+      box-shadow: 0 0 0 4px rgba(30,202,211,.16);
+    }
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      margin-top:14px; padding:12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.03);
+      color: var(--text-muted);
+      font-size:12px;
+    }
+    .check input{width:auto; margin-top:2px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
     button{
-      margin-top:10px;
-      padding:12px;
-      background:#1ECAD3;
-      border:none;
-      font-weight:bold;
+      cursor:pointer;
+      border:0;
+      padding:12px 14px;
+      border-radius: 14px;
+      color:#00131c;
+      font-weight:800;
+      background: linear-gradient(135deg, var(--accent-main), rgba(30,202,211,.85));
+      box-shadow: 0 14px 28px rgba(30,202,211,.16);
+    }
+    .ghost{
+      padding:12px 14px; border-radius:14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.04);
+      color: var(--text-main);
+      font-weight:650;
       cursor:pointer;
     }
-    .login{
-      float:right;
-      background:#F2C97D;
+
+    /* Listings grid */
+    #listingsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+    @media(max-width:1000px){ #listingsGrid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:700px){ #listingsGrid{grid-template-columns:1fr;} }
+
+    footer{margin-top:18px; color:var(--text-muted); font-size:12px}
+    hr{border:0; height:1px; background: rgba(255,255,255,.12); margin:14px 0}
+    .small{font-size:11px; color:var(--text-muted)}
+
+    /* WhatsApp floating button */
+    .whatsapp-fab{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-main), rgba(30,202,211,.85));
+      color: #00131c;
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .whatsapp-icon{width:18px;height:18px;display:inline-block}
+    .whatsapp-label{font-size:13px;white-space:nowrap}
+    @media (max-width: 420px){
+      .whatsapp-label{display:none;}
+      .whatsapp-fab{padding:12px;}
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logoBox" title="Logo">
+          <img src="logo.png" alt="Hurghada Coast Living Logo"
+               onerror="this.style.display='none'; this.parentElement.textContent='HCL';" />
+        </div>
+        <div>
+          <h1>Hurghada Coast Living</h1>
+          <p>Wohnungen in Hurghada • Miete & Kauf • Vermittlung</p>
+        </div>
+      </div>
 
-<header>
-  <button class="login" onclick="netlifyIdentity.open()">Login</button>
-  <h1>Hurghada Coast Living</h1>
-  <p>Wohnungen in Hurghada – Miete & Kauf</p>
-</header>
+      <div class="chips">
+        <span class="chip">🌊 Red Sea • Hurghada</span>
+        <span class="chip">✅ Unverbindlich</span>
 
-<section>
-  <div class="card">
-    <h2>📩 Anfrage senden</h2>
+        <button class="ghost" type="button" id="loginBtn">Login</button>
+        <button class="ghost" type="button" id="logoutBtn" style="display:none;">Logout</button>
+        <span class="small" id="userLabel"></span>
+      </div>
+    </header>
 
-    <form
-  name="interest"
-  method="POST"
-  data-netlify="true"
-  action="/danke.html">
+    <section class="hero">
+      <div class="card">
+        <div class="pad">
+          <span class="badge">🏡 Miete & Kauf</span>
+          <h2 class="headline">Wohnen & investieren an Hurghadas Küste</h2>
+          <p class="sub">
+            Wir verbinden Interessenten aus Europa mit Anbietern vor Ort in Ägypten.
+            Nennen Sie Budget, Zeitraum und Wünsche – wir melden uns mit passenden Optionen.
+          </p>
+          <ul style="color:var(--text-muted)">
+            <li><strong>Direktkontakt:</strong> Anbieter in Ägypten</li>
+            <li><strong>Transparenz:</strong> Unverbindliche Anfrage</li>
+            <li><strong>Datenschutz:</strong> Nutzung nur zur Bearbeitung</li>
+          </ul>
+          <p class="small">Inserate pflegst du unter <strong>/admin</strong></p>
+        </div>
+      </div>
 
-      <input type="hidden" name="form-name" value="interest">
+      <div class="card">
+        <form name="interest"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              action="/danke.html">
 
-      <label>Name</label>
-      <input name="name" required>
+          <input type="hidden" name="form-name" value="interest" />
+          <p style="display:none;">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
 
-      <label>E-Mail</label>
-      <input type="email" name="email" required>
+          <h3 style="margin:0 0 6px">📩 Anfrage senden</h3>
 
-      <label>Nachricht</label>
-      <textarea name="message"></textarea>
+          <label for="name">Name *</label>
+          <input id="name" name="name" required />
 
-      <button type="submit">Anfrage senden</button>
-    </form>
+          <label for="email">E-Mail *</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="phone">Telefon (WhatsApp optional)</label>
+          <input id="phone" name="phone" />
+
+          <label for="interestType">Interesse</label>
+          <select id="interestType" name="interestType">
+            <option value="mieten">Miete</option>
+            <option value="kaufen">Kauf</option>
+            <option value="invest">Investment</option>
+            <option value="urlaub">Urlaubsaufenthalt</option>
+          </select>
+
+          <label for="message">Wünsche / Nachricht</label>
+          <textarea id="message" name="message" placeholder="Budget, Zeitraum, Lage, Zimmer…"></textarea>
+
+          <div class="check">
+            <input id="privacy" name="privacy" type="checkbox" required />
+            <div>
+              <strong>Datenschutz *</strong><br>
+              Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden.
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit">Anfrage senden</button>
+            <button class="ghost" type="reset">Zurücksetzen</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section style="margin-top:18px;">
+      <div class="card">
+        <div class="pad">
+          <span class="badge">📌 Aktuelle Inserate</span>
+          <h2 style="margin:10px 0 8px;">Wohnungen (live aus Admin)</h2>
+          <p class="small" id="listingsHint"></p>
+          <div id="listingsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <hr>
+      <strong>Vermittlungshinweis</strong><br>
+      Hurghada Coast Living tritt ausschließlich als Vermittler auf. Miet-, Kauf- oder sonstige Verträge kommen ausschließlich zwischen dem Interessenten und dem jeweiligen Anbieter in Ägypten zustande. Es wird kein Maklervertrag nach deutschem Recht geschlossen.
+      <hr>
+
+      <strong>Impressum</strong><br>
+      Hurghada Coast Living<br>
+      Inhaber: <em>[Dein Vor- und Nachname]</em><br>
+      <em>[Deine Straße + Hausnummer]</em><br>
+      52499 Baesweiler – Deutschland<br>
+      E-Mail: <em>hurghadacoastliving@outlook.com</em><br>
+      Einzelunternehmen · Kleinunternehmer gemäß §19 UStG
+      <div class="small" style="margin-top:10px">© <span id="year"></span> Hurghada Coast Living</div>
+    </footer>
   </div>
-</section>
 
-<section>
-  <div class="card">
-    <h2>🏡 Beispiel-Inserat</h2>
-    <p>2-Zimmer-Wohnung · El Kawther</p>
-    <p>Preis: 55.000 €</p>
-    <button onclick="alert('Favorit gespeichert (Demo)')">❤️ Favorit</button>
-  </div>
-</section>
+  <a class="whatsapp-fab" id="waBtn" href="#" target="_blank" rel="noopener">
+    <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="#00131c" d="M19.11 17.53c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.46.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.52-.45-.45-.61-.46h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.64 1.11 2.82c.14.18 1.93 2.95 4.67 4.13.65.28 1.16.45 1.56.57.66.21 1.26.18 1.74.11.53-.08 1.59-.65 1.81-1.27.22-.62.22-1.15.16-1.27-.06-.12-.25-.18-.52-.32z"/>
+      <path fill="#00131c" d="M26.64 5.36A13.2 13.2 0 0 0 16.02 1C8.75 1 2.84 6.9 2.84 14.17c0 2.31.6 4.56 1.74 6.55L2.7 31l10.56-1.83a13.13 13.13 0 0 0 6.76 1.84c7.27 0 13.18-5.91 13.18-13.18 0-3.52-1.37-6.83-3.56-9.47zM16.02 28.5c-2.12 0-4.2-.57-6.02-1.65l-.43-.25-6.27 1.09 1.12-6.11-.28-.44a11.2 11.2 0 0 1-1.73-5.97c0-6.18 5.03-11.21 11.21-11.21 3 0 5.82 1.17 7.94 3.29a11.17 11.17 0 0 1 3.28 7.92c0 6.18-5.03 11.21-11.22 11.21z"/>
+    </svg>
+    <span class="whatsapp-label">WhatsApp schreiben</span>
+  </a>
 
-<script>
-  netlifyIdentity.on("login", () => {
-    netlifyIdentity.close();
-    alert("Erfolgreich eingeloggt!");
-  });
-</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
+    const WHATSAPP_NUMBER = "491701234567"; // <-- HIER ÄNDERN
+    const waBtn = document.getElementById("waBtn");
+    const waText = encodeURIComponent("Hallo Hurghada Coast Living, ich interessiere mich für eine Wohnung in Hurghada. Bitte senden Sie mir Informationen.");
+    waBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const userLabel = document.getElementById("userLabel");
+
+    loginBtn.addEventListener("click", () => netlifyIdentity.open());
+    logoutBtn.addEventListener("click", () => netlifyIdentity.logout());
+
+    netlifyIdentity.on("init", (user) => {
+      if (user) {
+        userLabel.textContent = `Eingeloggt: ${user.email}`;
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+      }
+    });
+
+    netlifyIdentity.on("login", (user) => {
+      userLabel.textContent = `Eingeloggt: ${user.email}`;
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      netlifyIdentity.close();
+    });
+
+    netlifyIdentity.on("logout", () => {
+      userLabel.textContent = "";
+      loginBtn.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+    });
+
+    netlifyIdentity.init();
+
+    async function loadListings(){
+      const grid = document.getElementById("listingsGrid");
+      const hint = document.getElementById("listingsHint");
+
+      try{
+        const res = await fetch("/data/listings.json", { cache: "no-store" });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        const json = await res.json();
+        const items = json.items || [];
+
+        if(items.length === 0){
+          hint.textContent = "Noch keine Inserate veröffentlicht.";
+          grid.innerHTML = "";
+          return;
+        }
+
+        hint.textContent = "";
+        grid.innerHTML = items.map(l => {
+          const img = (l.images && l.images.length) ? l.images[0] : "";
+          const features = (l.features && l.features.length) ? l.features.slice(0,3).join(" • ") : "";
+          return `
+            <div class="card" style="overflow:hidden;">
+              <div style="height:180px;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12);">
+                ${img
+                  ? `<img src="${img}" alt="" style="width:100%;height:180px;object-fit:cover;display:block;">`
+                  : `<div style="height:180px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);">Kein Bild</div>`
+                }
+              </div>
+              <div style="padding:14px;">
+                <div style="font-weight:900;margin-bottom:4px;">${l.title || ""}</div>
+                <div class="small">${(l.location||"")} • ${(l.type||"")} • ID: ${(l.id||"")}</div>
+                <div style="margin-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;">
+                  <span class="badge">💶 ${l.price || ""}</span>
+                  <span class="small">${l.size || ""} ${l.rooms ? "• " + l.rooms : ""}</span>
+                </div>
+                ${features ? `<div class="small" style="margin-top:10px;">${features}</div>` : ``}
+              </div>
+            </div>
+          `;
+        }).join("");
+
+      }catch(e){
+        hint.textContent = "Inserate konnten nicht geladen werden. Prüfe, ob /data/listings.json erreichbar ist.";
+        grid.innerHTML = "";
+      }
+    }
+
+    loadListings();
+  </script>
 </body>
 </html>

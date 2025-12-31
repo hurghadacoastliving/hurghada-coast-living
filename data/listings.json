@@ -1,38 +1,19 @@
 {
   "items": [
     {
-      "size": "168 m²",
-      "price": "150.000",
+      "id": "HCL-001",
+      "title": "2-Zimmer Apartment – El Kawther",
+      "type": "Kauf",
+      "price": "55.000 €",
+      "location": "Hurghada • El Kawther",
+      "size": "68 m²",
+      "rooms": "2 Zimmer",
       "floor": "2. Etage",
       "furnished": "möbliert",
-      "location": "Hurghada • El Kawther",
-      "title": "2-Zimmer Apartment – El Kawther",
-      "images": [
-        "/images/uploads/logo-12.2025.png"
-      ],
-      "rooms": "2 Zimmer",
-      "type": "Kauf",
-      "id": "HCL-001",
+      "features": ["Balkon", "Klimaanlage", "Aufzug"],
       "description": "Helles Apartment in guter Lage. Ideal für Eigennutzung oder Vermietung.",
-      "features": [
-        "Balkon",
-        "Klimaanlage",
-        "Aufzug"
-      ]
-    },
-    {
-      "size": "150",
-      "price": "100.00",
-      "floor": "5",
-      "furnished": "Möbiliert",
-      "location": "SeaView",
-      "title": "SeaView Hurgahda",
-      "rooms": "3",
-      "type": "Kauf",
-      "id": "HCL 002",
-      "features": [
-        "Gehobene Ausstattung"
-      ]
+      "images": []
     }
   ]
 }
+
